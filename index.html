@@ -3,250 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>우리 집 가치 탐험 지도</title>
+    <title>라온트리 로스터리 이전 및 시설 공사 예산안</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Gaegu', cursive;
-            background-color: #FFFDF5;
-            overflow: hidden; /* 스크롤 방지 */
-            touch-action: none; /* 모바일 터치 간섭 방지 */
+        /* Custom Styles for Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2.5rem;
         }
-        #gameCanvas {
-            cursor: pointer;
-            display: block;
+        th, td {
+            border: 1px solid #d1d5db; /* Tailwind gray-300 */
+            padding: 0.75rem 1rem;
+            text-align: left;
+            vertical-align: middle;
         }
-        .modal-enter {
-            animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        th {
+            background-color: #f3f4f6; /* Tailwind gray-100 */
+            font-weight: 600;
+            color: #374151; /* Tailwind gray-700 */
+            text-align: center;
         }
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
+        .td-center {
+            text-align: center;
+            font-weight: 500;
+            background-color: #f9fafb; /* Tailwind gray-50 */
+        }
+        .td-right {
+            text-align: right;
+            font-weight: 500;
+        }
+        .total-row td {
+            background-color: #e5e7eb; /* Tailwind gray-200 */
+            font-weight: bold;
+            font-size: 1.125rem;
+        }
+        /* Mobile responsiveness */
+        @media (max-width: 640px) {
+            th, td { padding: 0.5rem; font-size: 0.875rem; }
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-start h-screen">
+<body class="bg-gray-100 font-sans text-gray-800 antialiased p-4 md:p-8">
 
-    <!-- 상단 헤더 -->
-    <div class="w-full text-center py-4 bg-white/50 backdrop-blur-sm z-10 shadow-sm">
-        <h1 class="text-3xl font-bold text-stone-800">🎒 우리 집 가치 탐험 지도</h1>
-        <p id="progressText" class="text-lg text-amber-600 font-bold">보물을 찾아 떠나볼까? (0 / 12)</p>
-    </div>
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-lg">
+        
+        <!-- Header -->
+        <header class="border-b-4 border-gray-800 pb-4 mb-8 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900">라온트리 로스터리 이전 및 시설 공사 예산안</h1>
+            <p class="text-gray-500 mt-2">운영 형태: 카페 + 로스터리 | 공간 규모: 약 53평</p>
+        </header>
 
-    <!-- 캔버스 영역 -->
-    <div class="relative flex-grow w-full flex items-center justify-center overflow-hidden">
-        <canvas id="gameCanvas"></canvas>
-    </div>
+        <!-- 1. 기본 투자 -->
+        <section>
+            <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-blue-500 pl-3">1. 기본 투자</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th width="25%">구분</th>
+                        <th width="50%">내용</th>
+                        <th width="25%">금액 (원)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="td-center">대출</td>
+                        <td>시설 및 매입 자금</td>
+                        <td class="td-right">230,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">명도 비용</td>
+                        <td>키 인수 및 명도 처리</td>
+                        <td class="td-right">3,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">세금 및 법무 비용</td>
+                        <td>취득세, 법무사 비용 등</td>
+                        <td class="td-right">15,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">잔금</td>
+                        <td>부동산 계약 잔금</td>
+                        <td class="td-right">30,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">예비비</td>
+                        <td>기타 예기치 못한 지출 대비 비상금</td>
+                        <td class="td-right">10,000,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-    <!-- 미션 모달 -->
-    <div id="modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-6 z-50">
-        <div class="bg-white rounded-[2.5rem] p-8 w-full max-w-sm shadow-2xl border-8 border-amber-100 modal-enter">
-            <div class="flex flex-col items-center">
-                <div id="modalIcon" class="w-24 h-24 rounded-full flex items-center justify-center text-6xl mb-4 shadow-inner">
-                    😊
-                </div>
-                <h2 id="modalTitle" class="text-3xl font-bold mb-1">인사의 숲</h2>
-                <p id="modalValue" class="text-amber-600 text-xl font-bold mb-6">보물: 친절</p>
-                
-                <div class="bg-amber-50 w-full p-6 rounded-3xl border-2 border-dashed border-amber-200 mb-8">
-                    <p class="text-stone-500 text-sm font-bold mb-2">🚩 오늘의 미션</p>
-                    <p id="modalMission" class="text-xl font-bold text-stone-800 text-center leading-relaxed">
-                        "먼저 웃으며 인사를 해요!"
-                    </p>
-                </div>
-
-                <button id="completeBtn" class="w-full py-4 rounded-2xl bg-amber-500 text-white font-bold text-2xl shadow-lg hover:bg-amber-600 transition-transform active:scale-95 mb-4">
-                    보물 획득! 🏆
-                </button>
-                
-                <button onclick="closeModal()" class="text-stone-400 font-bold text-lg">나중에 할래요</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const modal = document.getElementById('modal');
-        const progressText = document.getElementById('progressText');
-
-        // 데이터 정의
-        const islands = [
-            { id: 1, name: '1월', title: '인사의 숲', value: '친절', mission: '먼저 웃으며 "안녕하세요!" 인사하기', color: '#fecdd3', icon: '😊', x: 0.2, y: 0.15 },
-            { id: 2, name: '2월', title: '마음의 호수', value: '공감', mission: '친구 표정 보고 어떤 마음인지 맞히기', color: '#bae6fd', icon: '❤️', x: 0.5, y: 0.12 },
-            { id: 3, name: '3월', title: '으랏차차 산', value: '협동', mission: '엄마랑 같이 장난감 집 찾아주기(정리)', color: '#a7f3d0', icon: '🤝', x: 0.8, y: 0.18 },
-            { id: 4, name: '4월', title: '진실의 들판', value: '정직', mission: '실수했을 때 "미안해"라고 솔직히 말하기', color: '#fde68a', icon: '🌱', x: 0.75, y: 0.38 },
-            { id: 5, name: '5월', title: '가족의 바다', value: '사랑', mission: '가족들에게 "사랑해" 하며 꽉 안아주기', color: '#fecaca', icon: '🤟', x: 0.45, y: 0.42 },
-            { id: 6, name: '6월', title: '도전의 동굴', value: '용기', mission: '무서워하던 음식 한 입 먹어보기', color: '#fed7aa', icon: '🦁', x: 0.15, y: 0.45 },
-            { id: 7, name: '7월', title: '지구의 섬', value: '배려', mission: '쓰레기를 직접 쓰레기통에 쏙 넣기', color: '#99f6e4', icon: '🌍', x: 0.22, y: 0.68 },
-            { id: 8, name: '8월', title: '기다림 나무', value: '인내', mission: '맛있는 것 먹기 전 "기다려요" 1분 참기', color: '#c7d2fe', icon: '⏳', x: 0.55, y: 0.65 },
-            { id: 9, name: '9월', title: '보석 마을', value: '존중', mission: '친구의 예쁜 점 찾아 칭찬해주기', color: '#e9d5ff', icon: '💎', x: 0.82, y: 0.72 },
-            { id: 10, name: '10월', title: '약속의 성', value: '책임', mission: '잠자기 전 내 물건 정리 정돈하기', color: '#a5f3fc', icon: '🏰', x: 0.78, y: 0.92 },
-            { id: 11, name: '11월', title: '질문 계곡', value: '호기심', mission: '세상에 대해 "왜 그럴까?" 질문 3개 하기', color: '#bef264', icon: '🔍', x: 0.48, y: 0.9 },
-            { id: 12, name: '12월', title: '빛나는 정상', value: '성장', mission: '1년 동안 자란 내 모습 칭찬하고 파티하기', color: '#fde047', icon: '👑', x: 0.18, y: 0.88 },
-        ];
-
-        let completed = JSON.parse(localStorage.getItem('exploration-canvas')) || [];
-        let hoveredId = null;
-        let selectedIsland = null;
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight - 100; // 헤더 제외
-            render();
-        }
-
-        function render() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // 1. 경로 그리기 (점선)
-            ctx.setLineDash([10, 10]);
-            ctx.strokeStyle = '#e7e5e4';
-            ctx.lineWidth = 4;
-            ctx.beginPath();
-            islands.forEach((island, index) => {
-                const px = island.x * canvas.width;
-                const py = island.y * canvas.height;
-                if (index === 0) ctx.moveTo(px, py);
-                else ctx.lineTo(px, py);
-            });
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // 2. 섬 그리기
-            islands.forEach(island => {
-                const isCompleted = completed.includes(island.id);
-                const isHovered = hoveredId === island.id;
-                const px = island.x * canvas.width;
-                const py = island.y * canvas.height;
-                const radius = isHovered ? 65 : 60;
-
-                // 그림자 효과
-                ctx.shadowColor = 'rgba(0,0,0,0.1)';
-                ctx.shadowBlur = 15;
-                ctx.shadowOffsetY = 5;
-
-                // 원형 섬 배경
-                ctx.fillStyle = island.color;
-                ctx.beginPath();
-                ctx.arc(px, py, radius, 0, Math.PI * 2);
-                ctx.fill();
-
-                // 테두리
-                ctx.strokeStyle = isHovered ? '#f59e0b' : '#ffffff';
-                ctx.lineWidth = isHovered ? 6 : 4;
-                ctx.stroke();
-
-                ctx.shadowBlur = 0;
-                ctx.shadowOffsetY = 0;
-
-                // 아이콘
-                ctx.font = '45px Arial';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(island.icon, px, py - 10);
-
-                // 텍스트 (제목)
-                ctx.fillStyle = '#292524';
-                ctx.font = 'bold 18px Gaegu';
-                ctx.fillText(island.title, px, py + 35);
-
-                // 완료 표시 (체크)
-                if (isCompleted) {
-                    ctx.fillStyle = '#22c55e';
-                    ctx.beginPath();
-                    ctx.arc(px + 45, py - 45, 18, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.strokeStyle = '#ffffff';
-                    ctx.lineWidth = 3;
-                    ctx.stroke();
+        <!-- 2. 인테리어 및 시설 공사 -->
+        <section>
+            <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-blue-500 pl-3">2. 인테리어 및 시설 공사</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th width="25%">구분</th>
+                        <th width="50%">세부 내용</th>
+                        <th width="25%">금액 (원)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="td-center">천정 페인트</td>
+                        <td>노출 천정 셀프 페인트</td>
+                        <td class="td-right">1,500,000</td>
+                    </tr>
+                    <!-- 전기 공사 (6 rows merged) -->
+                    <tr>
+                        <td class="td-center" rowspan="6">전기 공사</td>
+                        <td>전기 10KW 용량 확인 및 승압</td>
+                        <td class="td-right" rowspan="6">3,000,000</td>
+                    </tr>
+                    <tr><td>30A 차단기 (커피 머신용)</td></tr>
+                    <tr><td>커피 장비 전용 콘센트 추가</td></tr>
+                    <tr><td>3상 에어컨용 차단기</td></tr>
+                    <tr><td>레일등 공사</td></tr>
+                    <tr><td>음향용 차단기 추가</td></tr>
                     
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = '20px Arial';
-                    ctx.fillText('✓', px + 45, py - 45);
-                }
-            });
+                    <tr>
+                        <td class="td-center">바닥 공사</td>
+                        <td>데코타일 + 코팅</td>
+                        <td class="td-right">1,000,000</td>
+                    </tr>
+                    
+                    <!-- 소방 공사 (7 rows merged) -->
+                    <tr>
+                        <td class="td-center" rowspan="7">소방 공사<br><span class="text-xs text-red-500">(로스터리 필수)</span></td>
+                        <td>소방창</td>
+                        <td class="td-right" rowspan="7">12,000,000</td>
+                    </tr>
+                    <tr><td>스프링쿨러 설치</td></tr>
+                    <tr><td>천정 소화기</td></tr>
+                    <tr><td>이산화탄소 소화기</td></tr>
+                    <tr><td>일반 소화기</td></tr>
+                    <tr><td>비상 대피 안내도</td></tr>
+                    <tr><td>가스 감지기</td></tr>
 
-            updateProgressText();
-        }
+                    <tr>
+                        <td class="td-center">가스 공사</td>
+                        <td>LNG / LPG (로스터기 + 가스 온수기)</td>
+                        <td class="td-right">1,000,000</td>
+                    </tr>
 
-        function updateProgressText() {
-            const count = completed.length;
-            progressText.innerText = count === 12 ? '🎉 전설의 탐험대 탄생! 축하해!' : `보물을 찾아 떠나볼까? (${count} / 12)`;
-        }
+                    <!-- 덕트 공사 (3 rows merged) -->
+                    <tr>
+                        <td class="td-center" rowspan="3">덕트 공사</td>
+                        <td>시코로팬 설치</td>
+                        <td class="td-right" rowspan="3">1,000,000</td>
+                    </tr>
+                    <tr><td>덕트 설치</td></tr>
+                    <tr><td>창문 외부 배출 배관</td></tr>
 
-        function handleInput(e) {
-            const rect = canvas.getBoundingClientRect();
-            const x = (e.clientX || e.touches[0].clientX) - rect.left;
-            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                    <tr>
+                        <td class="td-center">가벽 / 바</td>
+                        <td>창고 + 수납 선반 제작</td>
+                        <td class="td-right">3,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">냉난방</td>
+                        <td>냉난방 시스템 설치</td>
+                        <td class="td-right">12,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">방화문</td>
+                        <td>방화문 시트지 및 슬라이딩 도어</td>
+                        <td class="td-right">500,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">바 설치</td>
+                        <td>카페 바 설치</td>
+                        <td class="td-right">1,000,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-            let found = null;
-            islands.forEach(island => {
-                const px = island.x * canvas.width;
-                const py = island.y * canvas.height;
-                const dist = Math.sqrt((x - px) ** 2 + (y - py) ** 2);
-                if (dist < 60) found = island;
-            });
+        <!-- 3. 장비 및 이전 비용 -->
+        <section>
+            <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-blue-500 pl-3">3. 장비 및 이전 비용</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th width="25%">구분</th>
+                        <th width="50%">내용</th>
+                        <th width="25%">금액 (원)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="td-center">로스팅기</td>
+                        <td>이전 또는 신규 구입</td>
+                        <td class="td-right">5,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">간판</td>
+                        <td>기존 간판 이전 + 신규 설치</td>
+                        <td class="td-right">2,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">이사 비용</td>
+                        <td>장비 및 시설 이전</td>
+                        <td class="td-right">4,000,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-            if (e.type === 'mousemove') {
-                if (hoveredId !== (found ? found.id : null)) {
-                    hoveredId = found ? found.id : null;
-                    render();
-                }
-            } else if (e.type === 'click' || e.type === 'touchstart') {
-                if (found) openModal(found);
-            }
-        }
+        <!-- 4 & 5. 총 비용 요약 -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-blue-500 pl-3">4. 시설 및 장비 총 비용<br><span class="text-sm font-normal text-gray-500">(대출 제외)</span></h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="60%">항목</th>
+                            <th width="40%">금액 (원)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="td-center">명도 비용</td>
+                            <td class="td-right">3,000,000</td>
+                        </tr>
+                        <tr>
+                            <td class="td-center">세금 및 법무</td>
+                            <td class="td-right">15,000,000</td>
+                        </tr>
+                        <tr>
+                            <td class="td-center">시설 공사 및 장비</td>
+                            <td class="td-right">47,000,000</td>
+                        </tr>
+                        <tr>
+                            <td class="td-center">잔금</td>
+                            <td class="td-right">30,000,000</td>
+                        </tr>
+                        <tr>
+                            <td class="td-center">예비비</td>
+                            <td class="td-right">10,000,000</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td class="td-center">총 합계</td>
+                            <td class="td-right text-blue-700">105,000,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        function openModal(island) {
-            selectedIsland = island;
-            document.getElementById('modalIcon').innerText = island.icon;
-            document.getElementById('modalIcon').style.backgroundColor = island.color;
-            document.getElementById('modalTitle').innerText = island.title;
-            document.getElementById('modalValue').innerText = `보물: ${island.value}`;
-            document.getElementById('modalMission').innerText = `"${island.mission}"`;
-            
-            const btn = document.getElementById('completeBtn');
-            const isDone = completed.includes(island.id);
-            btn.innerText = isDone ? '보물 다시 숨기기' : '보물 획득! 🏆';
-            btn.className = isDone ? 
-                'w-full py-4 rounded-2xl bg-stone-400 text-white font-bold text-2xl shadow-lg' : 
-                'w-full py-4 rounded-2xl bg-amber-500 text-white font-bold text-2xl shadow-lg hover:bg-amber-600 transition-transform active:scale-95 mb-4';
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-blue-500 pl-3">5. 전체 투자 규모</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="60%">항목</th>
+                            <th width="40%">금액 (원)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="td-center">대출</td>
+                            <td class="td-right">230,000,000</td>
+                        </tr>
+                        <tr>
+                            <td class="td-center">시설, 잔금 및 예비비 등</td>
+                            <td class="td-right">105,000,000</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td class="td-center">총 투자 규모</td>
+                            <td class="td-right text-red-600 text-xl">335,000,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-            modal.style.display = 'flex';
-        }
+        <!-- 참고 사항 -->
+        <section class="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-200">
+            <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                참고 사항
+            </h2>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li>공간 규모: 약 <strong>53평</strong></li>
+                <li>운영 형태: <strong>카페 + 로스터리</strong></li>
+                <li>천정 페인트: <strong>셀프 시공</strong> 예정</li>
+                <li>특이 사항: 로스터리 특성상 <strong>소방 공사 필수</strong> 진행</li>
+            </ul>
+        </section>
 
-        function closeModal() {
-            modal.style.display = 'none';
-            selectedIsland = null;
-        }
+    </div>
 
-        document.getElementById('completeBtn').onclick = () => {
-            if (!selectedIsland) return;
-            const id = selectedIsland.id;
-            if (completed.includes(id)) {
-                completed = completed.filter(i => i !== id);
-            } else {
-                completed.push(id);
-                // 폭죽 효과 같은 걸 여기서 줄 수 있습니다.
-            }
-            localStorage.setItem('exploration-canvas', JSON.stringify(completed));
-            render();
-            closeModal();
-        };
-
-        window.addEventListener('resize', resize);
-        canvas.addEventListener('mousemove', handleInput);
-        canvas.addEventListener('click', handleInput);
-        canvas.addEventListener('touchstart', (e) => {
-            handleInput(e);
-            e.preventDefault();
-        }, {passive: false});
-
-        window.onload = () => {
-            resize();
-        };
-    </script>
 </body>
 </html>
