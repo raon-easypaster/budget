@@ -624,15 +624,15 @@
                 { date: '2026-03-19', desc: '전기공사 1차 재료비', amount: 500000 },
                 { date: '2026-03-20', desc: '전등/레일외', amount: 706475 },
                 { date: '2026-03-20', desc: '소방 방화철문 구입', amount: 150000 },
-                { date: '2026-03-21', desc: '화물비(등기구)', amount: 30000 },
+                { date: '2026-03-21', desc: '화물비(등기구)', amount: 63000 },
                 { date: '2026-04-05', desc: '가스공사', amount: 1800000 }
             ];
             
-            // v13 키를 사용하여 새로운 항목을 강제 갱신합니다.
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v13'));
+            // v14 키를 사용하여 수정된 항목을 강제 갱신합니다.
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v14'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v13', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v14', JSON.stringify(expenses));
             }
 
             function updateDashboard() {
@@ -668,7 +668,7 @@
                 if(!date || !desc || isNaN(amount)) { alert('입력 확인 바랍니다.'); return; }
                 expenses.push({ date, desc, amount });
                 expenses.sort((a, b) => new Date(b.date) - new Date(a.date));
-                localStorage.setItem('raon_expenses_v13', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v14', JSON.stringify(expenses));
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
                 document.getElementById('exp-amount').value = '';
@@ -684,7 +684,7 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v13', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v14', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
