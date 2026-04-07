@@ -119,7 +119,7 @@
             <h1 class="text-2xl md:text-3xl font-bold text-gray-900">라온트리 로스터리 이전 및 시설 공사 예산 및 집행</h1>
             <p class="text-gray-500 mt-2">운영 형태: 카페 + 로스터리 | 공간 규모: 약 53평</p>
             <div class="mt-4 p-3 bg-blue-50 border border-blue-100 rounded-lg inline-block text-center shadow-sm">
-                <p class="text-sm font-bold text-blue-800">📌 2026년 4월 5일(주일) 현재 상황</p>
+                <p class="text-sm font-bold text-blue-800">📌 2026년 4월 17일(금) 현재 상황</p>
                 <p class="text-xs text-gray-600 mt-1">※ 가예산이므로 견적에 따라 지출은 변동 될 예정입니다.</p>
             </div>
         </header>
@@ -593,14 +593,26 @@
                 { date: '2026-03-20', desc: '전등/레일외', amount: 706475 },
                 { date: '2026-03-20', desc: '소방 방화철문 구입', amount: 150000 },
                 { date: '2026-03-21', desc: '화물비(등기구)', amount: 63000 },
-                { date: '2026-04-05', desc: '가스공사', amount: 1800000 }
+                { date: '2026-03-23', desc: '샷시', amount: 900000 },
+                { date: '2026-04-04', desc: '전기공사 2차 재료비', amount: 250000 },
+                { date: '2026-04-04', desc: '전기공사 인건비', amount: 1000000 },
+                { date: '2026-04-05', desc: '가스공사', amount: 1800000 },
+                { date: '2026-04-05', desc: '바재료(철골) 2차', amount: 252100 },
+                { date: '2026-04-06', desc: '외부 위탁 공사', amount: 8200000 },
+                { date: '2026-04-06', desc: '1층 폐기물 처리비용', amount: 140000 },
+                { date: '2026-04-06', desc: '전기온수기(30L,50L)', amount: 252900 },
+                { date: '2026-04-07', desc: '화물비', amount: 21000 },
+                { date: '2026-04-07', desc: '바설치재료', amount: 21600 },
+                { date: '2026-04-08', desc: '전기공사 승압비', amount: 665500 },
+                { date: '2026-04-08', desc: '배관설비', amount: 600000 },
+                { date: '2026-04-17', desc: '26년 4월 대출이자', amount: 746973 }
             ];
             
-            // v14 키를 사용하여 수정된 항목을 강제 갱신합니다.
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v14'));
+            // v22 키를 사용하여 수정된 항목을 강제 갱신합니다.
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v22'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v14', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v22', JSON.stringify(expenses));
             }
 
             function updateDashboard() {
@@ -636,7 +648,7 @@
                 if(!date || !desc || isNaN(amount)) { alert('입력 확인 바랍니다.'); return; }
                 expenses.push({ date, desc, amount });
                 expenses.sort((a, b) => new Date(b.date) - new Date(a.date));
-                localStorage.setItem('raon_expenses_v14', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v22', JSON.stringify(expenses));
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
                 document.getElementById('exp-amount').value = '';
@@ -652,7 +664,7 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v14', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v22', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
