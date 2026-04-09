@@ -193,6 +193,11 @@
                     <tr><td>레일등 공사</td></tr>
                     <tr><td>음향용 차단기 추가</td></tr>
                     <tr>
+                        <td class="td-center">상하수도 배관</td>
+                        <td>급배수 및 배관 설비 공사</td>
+                        <td class="td-right">700,000</td>
+                    </tr>
+                    <tr>
                         <td class="td-center" rowspan="7">소방 공사<br><span class="text-xs text-red-500">(로스터리 필수)</span></td>
                         <td>소방창</td>
                         <td class="td-right" rowspan="7">4,000,000</td>
@@ -297,7 +302,7 @@
                         </tr>
                         <tr>
                             <td class="td-center">시설 공사 및 장비</td>
-                            <td class="td-right">48,306,975</td>
+                            <td class="td-right">49,006,975</td>
                         </tr>
                         <tr>
                             <td class="td-center">잔금</td>
@@ -309,7 +314,7 @@
                         </tr>
                         <tr class="total-row">
                             <td class="td-center">총 합계</td>
-                            <td class="td-right text-blue-700">120,082,375</td>
+                            <td class="td-right text-blue-700">120,782,375</td>
                         </tr>
                     </tbody>
                 </table>
@@ -331,11 +336,11 @@
                         </tr>
                         <tr>
                             <td class="td-center">시설, 잔금 및 예비비 등</td>
-                            <td class="td-right">120,082,375</td>
+                            <td class="td-right">120,782,375</td>
                         </tr>
                         <tr class="total-row">
                             <td class="td-center">총 투자 규모</td>
-                            <td class="td-right text-red-600 text-xl">337,082,375</td>
+                            <td class="td-right text-red-600 text-xl">337,782,375</td>
                         </tr>
                     </tbody>
                 </table>
@@ -400,16 +405,16 @@
                             </tr>
                             <tr>
                                 <td class="td-center">시설 및 장비 총 비용<br><span class="text-xs font-normal text-gray-500">(예상 지출)</span></td>
-                                <td class="td-right text-blue-700">120,082,375</td>
+                                <td class="td-right text-blue-700">120,782,375</td>
                             </tr>
                             <tr class="total-row">
                                 <td class="td-center">필요 잔액<br><span class="text-sm font-normal">(수입 - 지출)</span></td>
-                                <td class="td-right text-red-600">-5,182,375</td>
+                                <td class="td-right text-red-600">-5,882,375</td>
                             </tr>
                         </tbody>
                     </table>
                     <p class="text-sm text-gray-600 mt-2 text-right">
-                        * 계산 결과, 예산 기준으로 <strong class="text-red-600">5,182,375원</strong>의 재정이 추가 필요합니다.
+                        * 계산 결과, 예산 기준으로 <strong class="text-red-600">5,882,375원</strong>의 재정이 추가 필요합니다.
                     </p>
                 </div>
             </div>
@@ -467,7 +472,7 @@
             </div>
             
             <div class="mt-4 p-4 bg-yellow-50 rounded-lg text-sm text-yellow-800 border border-yellow-200">
-                <p>💡 <strong>참고:</strong> 현재 예산상 총 투자 규모는 <strong id="dynamic-invest">337,082,375원</strong>이며, 확보된 총 수입(대출 포함)은 <strong>331,900,000원</strong>입니다. 이에 따라 전체 공정을 마치기 위해 <strong>5,182,375원</strong>이 추가로 필요합니다.</p>
+                <p>💡 <strong>참고:</strong> 현재 예산상 총 투자 규모는 <strong id="dynamic-invest">337,782,375원</strong>이며, 확보된 총 수입(대출 포함)은 <strong>331,900,000원</strong>입니다. 이에 따라 전체 공정을 마치기 위해 <strong>5,882,375원</strong>이 추가로 필요합니다.</p>
             </div>
         </section>
 
@@ -640,18 +645,19 @@
                 { date: '2026-04-07', desc: '바설치재료', amount: 21600 },
                 { date: '2026-04-08', desc: '외부 위탁 공사', amount: 8200000 },
                 { date: '2026-04-08', desc: '전기공사 승압비', amount: 665500 },
-                { date: '2026-04-08', desc: '배관설비', amount: 600000 },
+                { date: '2026-04-08', desc: '배관설비', amount: 700000 },
                 { date: '2026-04-08', desc: '작업자식대(김태주외)', amount: 46000 },
                 { date: '2026-04-08', desc: '싱크대 구입', amount: 189000 },
+                { date: '2026-04-09', desc: '단프라박스 중10, 대9', amount: 239800 },
                 { date: '2026-04-17', desc: '26년 4월 대출이자', amount: 746973 },
                 { date: '2026-04-22', desc: '한전 승압 분담금', amount: 665500 }
             ];
             
-            // v25 키를 사용하여 수정된 항목을 강제 갱신합니다.
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v25'));
+            // v27 키를 사용하여 수정된 항목을 강제 갱신합니다.
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v27'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v25', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v27', JSON.stringify(expenses));
             }
 
             function updateDashboard() {
@@ -687,7 +693,7 @@
                 if(!date || !desc || isNaN(amount)) { alert('입력 확인 바랍니다.'); return; }
                 expenses.push({ date, desc, amount });
                 expenses.sort((a, b) => new Date(b.date) - new Date(a.date));
-                localStorage.setItem('raon_expenses_v25', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v27', JSON.stringify(expenses));
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
                 document.getElementById('exp-amount').value = '';
@@ -703,7 +709,7 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v25', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v27', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
