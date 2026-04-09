@@ -629,22 +629,23 @@
                 { date: '2026-03-18', desc: '미납 공공전기요금', amount: 45846 },
                 { date: '2026-03-18', desc: '사다리 구입', amount: 162000 },
                 { date: '2026-03-19', desc: '냉난방기', amount: 10185000 },
-                { date: '2026-03-19', desc: '가벽자재', amount: 1979240 },
+                { date: '2026-03-19', desc: '가벽자재', amount: 1978240 },
                 { date: '2026-03-19', desc: '전기공사 1차 재료비', amount: 500000 },
                 { date: '2026-03-20', desc: '전등/레일외', amount: 706475 },
                 { date: '2026-03-20', desc: '소방 방화철문 구입', amount: 150000 },
                 { date: '2026-03-21', desc: '화물비(등기구)', amount: 63000 },
                 { date: '2026-03-23', desc: '샷시', amount: 900000 },
+                { date: '2026-03-24', desc: '화물비용', amount: 18000 },
+                { date: '2026-03-24', desc: '바재료 1차', amount: 208900 },
                 { date: '2026-04-04', desc: '전기공사 2차 재료비', amount: 250000 },
                 { date: '2026-04-04', desc: '전기공사 인건비', amount: 1000000 },
                 { date: '2026-04-05', desc: '가스공사', amount: 1800000 },
                 { date: '2026-04-05', desc: '바재료(철골) 2차', amount: 252100 },
                 { date: '2026-04-06', desc: '1층 폐기물 처리비용', amount: 140000 },
-                { date: '2026-04-06', desc: '전기온수기(30L,50L)', amount: 252900 },
+                { date: '2026-04-06', desc: '전기온수기(30L,50L)', amount: 252950 },
                 { date: '2026-04-07', desc: '화물비', amount: 21000 },
                 { date: '2026-04-07', desc: '바설치재료', amount: 21600 },
                 { date: '2026-04-08', desc: '외부 위탁 공사', amount: 8200000 },
-                { date: '2026-04-08', desc: '전기공사 승압비', amount: 665500 },
                 { date: '2026-04-08', desc: '배관설비', amount: 700000 },
                 { date: '2026-04-08', desc: '작업자식대(김태주외)', amount: 46000 },
                 { date: '2026-04-08', desc: '싱크대 구입', amount: 189000 },
@@ -653,11 +654,11 @@
                 { date: '2026-04-22', desc: '한전 승압 분담금', amount: 665500 }
             ];
             
-            // v27 키를 사용하여 수정된 항목을 강제 갱신합니다.
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v27'));
+            // v30 키를 사용하여 수정된 항목을 강제 갱신합니다.
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v30'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v27', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v30', JSON.stringify(expenses));
             }
 
             function updateDashboard() {
@@ -693,7 +694,7 @@
                 if(!date || !desc || isNaN(amount)) { alert('입력 확인 바랍니다.'); return; }
                 expenses.push({ date, desc, amount });
                 expenses.sort((a, b) => new Date(b.date) - new Date(a.date));
-                localStorage.setItem('raon_expenses_v27', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v30', JSON.stringify(expenses));
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
                 document.getElementById('exp-amount').value = '';
@@ -709,7 +710,7 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v27', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v30', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
