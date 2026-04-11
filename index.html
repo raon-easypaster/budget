@@ -250,6 +250,16 @@
                         <td>외부 및 실내 간판 제작 및 설치</td>
                         <td class="td-right text-blue-700 font-bold">2,500,000</td>
                     </tr>
+                    <tr>
+                        <td class="td-center">음식물처리기</td>
+                        <td>카페용 음식물 쓰레기 처리기</td>
+                        <td class="td-right">500,000</td>
+                    </tr>
+                    <tr>
+                        <td class="td-center">화장실 큐비클</td>
+                        <td>화장실 칸막이(큐비클) 시공</td>
+                        <td class="td-right">500,000</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
@@ -274,7 +284,7 @@
                     <tr>
                         <td class="td-center">이사 비용</td>
                         <td>장비 및 시설 이전</td>
-                        <td class="td-right">4,000,000</td>
+                        <td class="td-right">3,000,000</td>
                     </tr>
                 </tbody>
             </table>
@@ -653,15 +663,16 @@
                 { date: '2026-04-09', desc: '단프라박스 중10, 대9', amount: 239800 },
                 { date: '2026-04-10', desc: '건물CCTV', amount: 136000 },
                 { date: '2026-04-10', desc: '화재보험', amount: 402905 },
+                { date: '2026-04-11', desc: '바설치식대', amount: 40000 },
                 { date: '2026-04-17', desc: '26년 4월 대출이자', amount: 746973 },
                 { date: '2026-04-22', desc: '한전 승압 분담금', amount: 665500 }
             ];
             
-            // v34 키를 사용하여 수정된 항목을 강제 갱신합니다.
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v34'));
+            // v35 키를 사용하여 수정된 항목을 강제 갱신합니다.
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v35'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v34', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v35', JSON.stringify(expenses));
             }
             // 항상 과거(오래된 날짜)가 위로 오도록 정렬 보장
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -709,7 +720,7 @@
                 expenses.push({ date, desc, amount });
                 // 항목 추가 시에도 과거순(오름차순) 정렬 유지
                 expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-                localStorage.setItem('raon_expenses_v34', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v35', JSON.stringify(expenses));
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
                 document.getElementById('exp-amount').value = '';
@@ -725,7 +736,7 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v34', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v35', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
