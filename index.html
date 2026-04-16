@@ -248,12 +248,12 @@
                     <tr>
                         <td class="td-center">간판</td>
                         <td>외부 및 실내 간판 제작 및 설치</td>
-                        <td class="td-right text-blue-700 font-bold">2,500,000</td>
+                        <td class="td-right text-blue-700 font-bold">2,000,000</td>
                     </tr>
                     <tr>
                         <td class="td-center">음식물처리기</td>
                         <td>카페용 음식물 쓰레기 처리기</td>
-                        <td class="td-right">500,000</td>
+                        <td class="td-right">120,000</td>
                     </tr>
                     <tr>
                         <td class="td-center">화장실 큐비클</td>
@@ -312,7 +312,7 @@
                         </tr>
                         <tr>
                             <td class="td-center">시설 공사 및 장비</td>
-                            <td class="td-right">49,006,975</td>
+                            <td class="td-right">48,126,975</td>
                         </tr>
                         <tr>
                             <td class="td-center">잔금</td>
@@ -324,7 +324,7 @@
                         </tr>
                         <tr class="total-row">
                             <td class="td-center">총 합계</td>
-                            <td class="td-right text-blue-700">120,782,375</td>
+                            <td class="td-right text-blue-700">119,902,375</td>
                         </tr>
                     </tbody>
                 </table>
@@ -346,11 +346,11 @@
                         </tr>
                         <tr>
                             <td class="td-center">시설, 잔금 및 예비비 등</td>
-                            <td class="td-right">120,782,375</td>
+                            <td class="td-right">119,902,375</td>
                         </tr>
                         <tr class="total-row">
                             <td class="td-center">총 투자 규모</td>
-                            <td class="td-right text-red-600 text-xl">337,782,375</td>
+                            <td class="td-right text-red-600 text-xl">336,902,375</td>
                         </tr>
                     </tbody>
                 </table>
@@ -415,16 +415,16 @@
                             </tr>
                             <tr>
                                 <td class="td-center">시설 및 장비 총 비용<br><span class="text-xs font-normal text-gray-500">(예상 지출)</span></td>
-                                <td class="td-right text-blue-700">120,782,375</td>
+                                <td class="td-right text-blue-700">119,902,375</td>
                             </tr>
                             <tr class="total-row">
                                 <td class="td-center">필요 잔액<br><span class="text-sm font-normal">(수입 - 지출)</span></td>
-                                <td class="td-right text-red-600">-5,882,375</td>
+                                <td class="td-right text-red-600">-5,002,375</td>
                             </tr>
                         </tbody>
                     </table>
                     <p class="text-sm text-gray-600 mt-2 text-right">
-                        * 계산 결과, 예산 기준으로 <strong class="text-red-600">5,882,375원</strong>의 재정이 추가 필요합니다.
+                        * 계산 결과, 예산 기준으로 <strong class="text-red-600">5,002,375원</strong>의 재정이 추가 필요합니다.
                     </p>
                 </div>
             </div>
@@ -456,7 +456,7 @@
                 <form id="expense-form" class="flex flex-col md:flex-row gap-3">
                     <div class="flex-1 flex flex-col md:flex-row gap-2">
                         <input type="date" id="exp-date" required class="border border-gray-300 p-2.5 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none md:w-40 text-sm">
-                        <input type="text" id="exp-desc" placeholder="지출 항목 (예: 부동산 계약금, 로스터기 대금)" required class="border border-gray-300 p-2.5 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none flex-1 text-sm">
+                        <input type="text" id="exp-desc" placeholder="지출 항목 (예: 부동산 계약금)" required class="border border-gray-300 p-2.5 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none flex-1 text-sm">
                         <input type="text" id="exp-amount" placeholder="금액 (숫자만 입력)" required class="border border-gray-300 p-2.5 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none md:w-40 text-sm text-right">
                     </div>
                     <button type="submit" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2.5 px-6 rounded transition shadow-md whitespace-nowrap">
@@ -483,7 +483,7 @@
             </div>
             
             <div class="mt-4 p-4 bg-yellow-50 rounded-lg text-sm text-yellow-800 border border-yellow-200">
-                <p>💡 <strong>참고:</strong> 현재 예산상 총 투자 규모는 <strong id="dynamic-invest">337,782,375원</strong>이며, 확보된 총 수입(대출 포함)은 <strong>331,900,000원</strong>입니다. 이에 따라 전체 공정을 마치기 위해 <strong>5,882,375원</strong>이 추가로 필요합니다.</p>
+                <p>💡 <strong>참고:</strong> 현재 예산상 총 투자 규모는 <strong id="dynamic-invest">336,902,375원</strong>이며, 확보된 총 수입(대출 포함)은 <strong>331,900,000원</strong>입니다. 이에 따라 전체 공정을 마치기 위해 <strong>5,002,375원</strong>이 추가로 필요합니다.</p>
             </div>
         </section>
 
@@ -627,7 +627,7 @@
                 });
             });
 
-            // --- 2. 실제 지출 장부 로직 (복구) ---
+            // --- 2. 실제 지출 장부 로직 ---
             const TOTAL_INCOME = 114900000 + 217000000; // 331,900,000원
             
             const defaultExpenses = [
@@ -663,16 +663,25 @@
                 { date: '2026-04-09', desc: '단프라박스 중10, 대9', amount: 239800 },
                 { date: '2026-04-10', desc: '건물CCTV', amount: 136000 },
                 { date: '2026-04-10', desc: '화재보험', amount: 402905 },
-                { date: '2026-04-11', desc: '바설치식대', amount: 40000 },
+                { date: '2026-04-11', desc: '바설치식대', amount: 18000 },
+                { date: '2026-04-13', desc: '장비', amount: 40000 },
+                { date: '2026-04-13', desc: '작업자 식대', amount: 74100 },
+                { date: '2026-04-13', desc: '바용 목재', amount: 234000 },
+                { date: '2026-04-13', desc: '음식물 처리기', amount: 120000 },
+                { date: '2026-04-14', desc: '바 시트지 공사', amount: 990000 },
+                { date: '2026-04-14', desc: '복도조명', amount: 20000 },
+                { date: '2026-04-14', desc: '간판', amount: 2000000 },
+                { date: '2026-04-15', desc: '작업자 식대', amount: 56000 },
+                { date: '2026-04-16', desc: '카페의자', amount: 1360000 },
                 { date: '2026-04-17', desc: '26년 4월 대출이자', amount: 746973 },
                 { date: '2026-04-22', desc: '한전 승압 분담금', amount: 665500 }
             ];
             
-            // v35 키를 사용하여 수정된 항목을 강제 갱신합니다.
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v35'));
+            // v45 키를 사용하여 수정된 항목을 강제 갱신 및 캐시 초기화
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v45'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v35', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v45', JSON.stringify(expenses));
             }
             // 항상 과거(오래된 날짜)가 위로 오도록 정렬 보장
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -684,12 +693,13 @@
                 document.getElementById('dash-balance').innerText = currentBalance.toLocaleString();
                 const tbody = document.getElementById('expense-list');
                 tbody.innerHTML = '';
+                
                 if(expenses.length === 0) {
                     tbody.innerHTML = `<tr><td colspan="5" class="text-center text-gray-400 py-8">아직 등록된 지출 내역이 없습니다.</td></tr>`;
                     return;
                 }
 
-                // 누계를 과거(위)에서부터 최신(아래) 방향으로 차곡차곡 합산하도록 역순 로직 수정
+                // 누계를 과거(위)에서부터 최신(아래) 방향으로 차곡차곡 합산
                 let tempTotal = 0;
                 const expensesWithTotal = expenses.map(exp => {
                     tempTotal += exp.amount;
@@ -717,10 +727,12 @@
                 const desc = document.getElementById('exp-desc').value;
                 const amount = parseInt(document.getElementById('exp-amount').value.replace(/,/g, ''), 10);
                 if(!date || !desc || isNaN(amount)) { alert('입력 확인 바랍니다.'); return; }
+                
                 expenses.push({ date, desc, amount });
                 // 항목 추가 시에도 과거순(오름차순) 정렬 유지
                 expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-                localStorage.setItem('raon_expenses_v35', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v45', JSON.stringify(expenses));
+                
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
                 document.getElementById('exp-amount').value = '';
@@ -736,14 +748,15 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v35', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v45', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
+            
             document.getElementById('exp-date').valueAsDate = new Date();
             updateDashboard();
 
-            // --- 3. 시공 체크리스트 저장 로직 (복구) ---
+            // --- 3. 시공 체크리스트 저장 로직 ---
             const checkboxes = document.querySelectorAll('.checklist-cb');
             checkboxes.forEach(cb => {
                 const checked = localStorage.getItem('raon_checklist_' + cb.id) === 'true';
