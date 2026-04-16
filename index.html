@@ -159,7 +159,7 @@
                     <tr>
                         <td class="td-center">예비비</td>
                         <td>기타 예기치 못한 지출 대비 비상금</td>
-                        <td class="td-right">10,000,000</td>
+                        <td class="td-right">5,000,000</td>
                     </tr>
                 </tbody>
             </table>
@@ -255,11 +255,6 @@
                         <td>카페용 음식물 쓰레기 처리기</td>
                         <td class="td-right">120,000</td>
                     </tr>
-                    <tr>
-                        <td class="td-center">화장실 큐비클</td>
-                        <td>화장실 칸막이(큐비클) 시공</td>
-                        <td class="td-right">500,000</td>
-                    </tr>
                 </tbody>
             </table>
         </section>
@@ -284,7 +279,7 @@
                     <tr>
                         <td class="td-center">이사 비용</td>
                         <td>장비 및 시설 이전</td>
-                        <td class="td-right">3,000,000</td>
+                        <td class="td-right">2,000,000</td>
                     </tr>
                 </tbody>
             </table>
@@ -312,7 +307,7 @@
                         </tr>
                         <tr>
                             <td class="td-center">시설 공사 및 장비</td>
-                            <td class="td-right">48,126,975</td>
+                            <td class="td-right">46,626,975</td>
                         </tr>
                         <tr>
                             <td class="td-center">잔금</td>
@@ -320,11 +315,11 @@
                         </tr>
                         <tr>
                             <td class="td-center">예비비</td>
-                            <td class="td-right">10,000,000</td>
+                            <td class="td-right">5,000,000</td>
                         </tr>
                         <tr class="total-row">
                             <td class="td-center">총 합계</td>
-                            <td class="td-right text-blue-700">119,902,375</td>
+                            <td class="td-right text-blue-700">113,402,375</td>
                         </tr>
                     </tbody>
                 </table>
@@ -346,11 +341,11 @@
                         </tr>
                         <tr>
                             <td class="td-center">시설, 잔금 및 예비비 등</td>
-                            <td class="td-right">119,902,375</td>
+                            <td class="td-right">113,402,375</td>
                         </tr>
                         <tr class="total-row">
                             <td class="td-center">총 투자 규모</td>
-                            <td class="td-right text-red-600 text-xl">336,902,375</td>
+                            <td class="td-right text-red-600 text-xl">330,402,375</td>
                         </tr>
                     </tbody>
                 </table>
@@ -415,16 +410,16 @@
                             </tr>
                             <tr>
                                 <td class="td-center">시설 및 장비 총 비용<br><span class="text-xs font-normal text-gray-500">(예상 지출)</span></td>
-                                <td class="td-right text-blue-700">119,902,375</td>
+                                <td class="td-right text-blue-700">113,402,375</td>
                             </tr>
                             <tr class="total-row">
                                 <td class="td-center">필요 잔액<br><span class="text-sm font-normal">(수입 - 지출)</span></td>
-                                <td class="td-right text-red-600">-5,002,375</td>
+                                <td class="td-right text-blue-600">1,497,625</td>
                             </tr>
                         </tbody>
                     </table>
                     <p class="text-sm text-gray-600 mt-2 text-right">
-                        * 계산 결과, 예산 기준으로 <strong class="text-red-600">5,002,375원</strong>의 재정이 추가 필요합니다.
+                        * 계산 결과, 예산 기준으로 <strong class="text-blue-600">1,497,625원</strong>의 재정이 남습니다.
                     </p>
                 </div>
             </div>
@@ -482,8 +477,8 @@
                 </table>
             </div>
             
-            <div class="mt-4 p-4 bg-yellow-50 rounded-lg text-sm text-yellow-800 border border-yellow-200">
-                <p>💡 <strong>참고:</strong> 현재 예산상 총 투자 규모는 <strong id="dynamic-invest">336,902,375원</strong>이며, 확보된 총 수입(대출 포함)은 <strong>331,900,000원</strong>입니다. 이에 따라 전체 공정을 마치기 위해 <strong>5,002,375원</strong>이 추가로 필요합니다.</p>
+            <div class="mt-4 p-4 bg-blue-50 rounded-lg text-sm text-blue-800 border border-blue-200">
+                <p>💡 <strong>참고:</strong> 현재 예산상 총 투자 규모는 <strong id="dynamic-invest">330,402,375원</strong>이며, 확보된 총 수입(대출 포함)은 <strong>331,900,000원</strong>입니다. 이에 따라 전체 공정을 마치고도 <strong class="text-blue-600">1,497,625원</strong>의 여유 자금이 발생할 것으로 예상됩니다.</p>
             </div>
         </section>
 
@@ -677,11 +672,11 @@
                 { date: '2026-04-22', desc: '한전 승압 분담금', amount: 665500 }
             ];
             
-            // v45 키를 사용하여 수정된 항목을 강제 갱신 및 캐시 초기화
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v45'));
+            // v46 키를 사용하여 수정된 항목을 강제 갱신 및 캐시 초기화
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v46'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v45', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v46', JSON.stringify(expenses));
             }
             // 항상 과거(오래된 날짜)가 위로 오도록 정렬 보장
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -731,7 +726,7 @@
                 expenses.push({ date, desc, amount });
                 // 항목 추가 시에도 과거순(오름차순) 정렬 유지
                 expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-                localStorage.setItem('raon_expenses_v45', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v46', JSON.stringify(expenses));
                 
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
@@ -748,7 +743,7 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v45', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v46', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
