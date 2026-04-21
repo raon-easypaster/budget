@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>라온동행교회 및 라온트리 이전 및 시설 공사 예산 및 집행</title>
+    <title>라온동행교회 및 라온트리 시설 공사 예산 및 집행</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom Styles for Table */
@@ -116,7 +116,7 @@
     <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-lg">
         
         <header class="border-b-4 border-gray-800 pb-4 mb-8 text-center">
-            <h1 class="text-2xl md:text-3xl font-bold text-gray-900">라온트리 로스터리 이전 및 시설 공사 예산 및 집행</h1>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900">라온동행교회 및 라온트리 시설 공사 예산 및 집행</h1>
             <p class="text-gray-500 mt-2">운영 형태: 카페 + 로스터리 | 공간 규모: 약 53평</p>
             <div class="mt-4 p-3 bg-blue-50 border border-blue-100 rounded-lg inline-block text-center shadow-sm">
                 <p class="text-sm font-bold text-blue-800">📌 2026년 4월 22일(수) 현재 상황</p>
@@ -682,15 +682,22 @@
                 { date: '2026-04-14', desc: '간판', amount: 2000000 },
                 { date: '2026-04-15', desc: '작업자 식대', amount: 56000 },
                 { date: '2026-04-16', desc: '카페의자', amount: 1360000 },
+                { date: '2026-04-17', desc: '소방설비공사비', amount: 3135000 },
+                { date: '2026-04-17', desc: '창고 재료', amount: 774400 },
                 { date: '2026-04-17', desc: '26년 4월 대출이자', amount: 746973 },
-                { date: '2026-04-22', desc: '한전 승압 분담금', amount: 665500 }
+                { date: '2026-04-19', desc: '청소용품외', amount: 86000 },
+                { date: '2026-04-19', desc: '트롤리 4개', amount: 74000 },
+                { date: '2026-04-21', desc: '한전 승압 분담금', amount: 665500 },
+                { date: '2026-04-21', desc: '작업자 식대', amount: 54500 },
+                { date: '2026-04-21', desc: '가스 철거비용', amount: 100000 },
+                { date: '2026-04-21', desc: '인건비 지출', amount: 2000000 }
             ];
             
-            // v47 키를 사용하여 수정된 항목을 강제 갱신 및 캐시 초기화
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v47'));
+            // v50 키를 사용하여 수정된 항목을 강제 갱신 및 캐시 초기화
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v50'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v47', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v50', JSON.stringify(expenses));
             }
             // 항상 과거(오래된 날짜)가 위로 오도록 정렬 보장
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -740,7 +747,7 @@
                 expenses.push({ date, desc, amount });
                 // 항목 추가 시에도 과거순(오름차순) 정렬 유지
                 expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-                localStorage.setItem('raon_expenses_v47', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v50', JSON.stringify(expenses));
                 
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
@@ -757,7 +764,7 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v47', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v50', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
