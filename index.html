@@ -683,14 +683,17 @@
                 { date: '2026-04-24', desc: '방충망', amount: 1000000 },
                 { date: '2026-04-24', desc: '수납장(테무)', amount: 93000 },
                 { date: '2026-04-24', desc: '원형테이블(흰색)', amount: 37590 },
-                { date: '2026-04-24', desc: '흰색테이블 4개', amount: 1000000 }
+                { date: '2026-04-25', desc: '식대', amount: 116000 },
+                { date: '2026-04-25', desc: '커텐(테무)', amount: 38738 },
+                { date: '2026-04-25', desc: '유리문', amount: 1400000 },
+                { date: '2026-04-30', desc: '덕트공사', amount: 3000000 }
             ];
             
-            // v54 키를 사용하여 수정된 항목을 강제 갱신 및 캐시 초기화
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v54'));
+            // v56 키를 사용하여 수정된 항목을 강제 갱신 및 캐시 초기화
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v56'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v54', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v56', JSON.stringify(expenses));
             }
             // 항상 과거(오래된 날짜)가 위로 오도록 정렬 보장
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -740,7 +743,7 @@
                 expenses.push({ date, desc, amount });
                 // 항목 추가 시에도 과거순(오름차순) 정렬 유지
                 expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-                localStorage.setItem('raon_expenses_v54', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v56', JSON.stringify(expenses));
                 
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
@@ -757,7 +760,7 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v54', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v56', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
