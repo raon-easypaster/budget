@@ -78,6 +78,7 @@
 </head>
 <body class="bg-gray-100 font-sans text-gray-800 antialiased pt-20 pb-8 px-4 md:px-8">
 
+    <!-- 상단 고정 내비게이션 바 -->
     <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="text-xl font-bold text-gray-900 flex items-center">
@@ -111,17 +112,18 @@
         </div>
     </nav>
 
+    <!-- 메인 컨텐츠 컨테이너 -->
     <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-lg">
         
         <header class="border-b-4 border-gray-800 pb-4 mb-8 text-center">
             <h1 class="text-2xl md:text-3xl font-bold text-gray-900">라온동행교회 및 라온트리 시설 공사 예산 및 집행</h1>
             <p class="text-gray-500 mt-2">운영 형태: 카페 + 로스터리 | 공간 규모: 약 53평</p>
             <div class="mt-4 p-3 bg-blue-50 border border-blue-100 rounded-lg inline-block text-center shadow-sm">
-                <p class="text-sm font-bold text-blue-800">📌 2026년 4월 24일(금) 현재 상황</p>
-                <p class="text-xs text-gray-600 mt-1">※ 가예산이므로 견적에 따라 지출은 변동 될 예정입니다.</p>
+                <p class="text-sm font-bold text-blue-800">📌 2026년 5월 10일(주일) 현재 상황</p>
             </div>
         </header>
 
+        <!-- 1. 기본 투자 -->
         <section id="sec1">
             <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-blue-500 pl-3">1. 기본 투자</h2>
             <table>
@@ -167,6 +169,7 @@
             </table>
         </section>
 
+        <!-- 2. 인테리어 및 시설 공사 -->
         <section id="sec2">
             <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-blue-500 pl-3">2. 인테리어 및 시설 공사</h2>
             <table>
@@ -265,6 +268,7 @@
             </table>
         </section>
 
+        <!-- 3. 장비 및 이전 비용 -->
         <section id="sec3">
             <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-blue-500 pl-3">3. 장비 및 이전 비용</h2>
             <table>
@@ -290,6 +294,7 @@
             </table>
         </section>
 
+        <!-- 4 & 5. 총 비용 요약 -->
         <section id="sec4" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>
                 <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-blue-500 pl-3">4. 시설 및 장비 총 비용<br><span class="text-sm font-normal text-gray-500">(대출 제외)</span></h2>
@@ -360,9 +365,11 @@
             </div>
         </section>
 
+        <!-- 6. 수입 재정 및 필요 잔액 -->
         <section id="sec6" class="mb-8">
             <h2 class="text-xl font-bold text-gray-800 mb-3 border-l-4 border-green-500 pl-3">6. 수입 재정 및 필요 잔액</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 수입 내역 -->
                 <div>
                     <table>
                         <thead>
@@ -385,8 +392,12 @@
                                 <td class="td-right">15,000,000</td>
                             </tr>
                             <tr>
-                                <td class="td-center">외부 헌금<br><span class="text-sm font-normal text-gray-600">(이지택, 신승범, 김종한, 천길호, 최지선, 이경희, 이인희, 권기환, 배영옥, 이경순)</span></td>
-                                <td class="td-right">9,900,000</td>
+                                <td class="td-center font-bold text-green-800">외부 헌금 (교회)<br><span class="text-sm font-normal text-gray-600">(시흥제일교회, 새언약교회, 주사랑교회)</span></td>
+                                <td class="td-right font-bold text-green-800">1,200,000</td>
+                            </tr>
+                            <tr>
+                                <td class="td-center">외부 헌금 (개인)<br><span class="text-sm font-normal text-gray-600">(이지택, 신승범, 김종한, 천길호, 최지선, 이경희, 이인희, 권기환, 배영옥, 이경순, 서무일, 황지선, 임성현 이사장)</span></td>
+                                <td class="td-right">10,250,000</td>
                             </tr>
                             <tr>
                                 <td class="td-center">교회 성도 헌금 외</td>
@@ -394,12 +405,13 @@
                             </tr>
                             <tr class="total-row">
                                 <td class="td-center">수입 총계</td>
-                                <td class="td-right text-green-700">115,900,000</td>
+                                <td class="td-right text-green-700">117,450,000</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
+                <!-- 필요 잔액 계산 -->
                 <div>
                     <table>
                         <thead>
@@ -411,7 +423,7 @@
                         <tbody>
                             <tr>
                                 <td class="td-center">수입 총계</td>
-                                <td class="td-right text-green-700">115,900,000</td>
+                                <td class="td-right text-green-700">117,450,000</td>
                             </tr>
                             <tr>
                                 <td class="td-center">시설 및 장비 총 비용<br><span class="text-xs font-normal text-gray-500">(예상 지출)</span></td>
@@ -419,17 +431,18 @@
                             </tr>
                             <tr class="total-row">
                                 <td class="td-center">여유 잔액<br><span class="text-sm font-normal">(수입 - 지출)</span></td>
-                                <td class="td-right text-blue-600">1,722,625</td>
+                                <td class="td-right text-blue-600">3,272,625</td>
                             </tr>
                         </tbody>
                     </table>
                     <p class="text-sm text-gray-600 mt-2 text-right">
-                        * 계산 결과, 예산 기준으로 <strong class="text-blue-600">1,722,625원</strong>의 재정이 남습니다.
+                        * 계산 결과, 예산 기준으로 <strong class="text-blue-600">3,272,625원</strong>의 재정이 남습니다.
                     </p>
                 </div>
             </div>
         </section>
 
+        <!-- 7. 실제 지출 내역 및 실시간 정산 -->
         <section id="sec7" class="mb-8 border-t-2 border-dashed border-gray-300 pt-8 mt-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
                 <span class="text-blue-600 mr-2">📝</span> 7. 실제 지출 내역 및 정산
@@ -439,7 +452,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div class="bg-green-50 border border-green-200 p-5 rounded-xl text-center shadow-sm">
                     <p class="text-sm text-green-800 font-bold mb-1">확보된 총 수입액 (대출 포함)</p>
-                    <p class="text-2xl font-black text-green-700">332,900,000<span class="text-base font-normal"> 원</span></p>
+                    <p class="text-2xl font-black text-green-700">334,450,000<span class="text-base font-normal"> 원</span></p>
                 </div>
                 <div class="bg-red-50 border border-red-200 p-5 rounded-xl text-center shadow-sm">
                     <p class="text-sm text-red-800 font-bold mb-1">현재까지 실제 지출 합계</p>
@@ -447,7 +460,7 @@
                 </div>
                 <div class="bg-blue-50 border border-blue-200 p-5 rounded-xl text-center shadow-sm">
                     <p class="text-sm text-blue-800 font-bold mb-1">현재 통장 잔액 (수입 - 실제지출)</p>
-                    <p class="text-2xl font-black text-blue-700"><span id="dash-balance">332,900,000</span><span class="text-base font-normal"> 원</span></p>
+                    <p class="text-2xl font-black text-blue-700"><span id="dash-balance">334,450,000</span><span class="text-base font-normal"> 원</span></p>
                 </div>
             </div>
 
@@ -476,15 +489,17 @@
                         </tr>
                     </thead>
                     <tbody id="expense-list" class="bg-white">
-                        </tbody>
+                        <!-- Javascript로 내역이 추가되는 영역 -->
+                    </tbody>
                 </table>
             </div>
             
             <div class="mt-4 p-4 bg-blue-50 rounded-lg text-sm text-blue-800 border border-blue-200">
-                <p>💡 <strong>참고:</strong> 현재 예산상 총 투자 규모는 <strong id="dynamic-invest">331,177,375원</strong>이며, 확보된 총 수입(대출 포함)은 <strong>332,900,000원</strong>입니다. 이에 따라 전체 공정을 마치고도 <strong class="text-blue-600">1,722,625원</strong>의 여유 자금이 발생할 것으로 예상됩니다.</p>
+                <p>💡 <strong>참고:</strong> 현재 예산상 총 투자 규모는 <strong id="dynamic-invest">331,177,375원</strong>이며, 확보된 총 수입(대출 포함)은 <strong>334,450,000원</strong>입니다. 이에 따라 전체 공정을 마치고도 <strong class="text-blue-600">3,272,625원</strong>의 여유 자금이 발생할 것으로 예상됩니다.</p>
             </div>
         </section>
 
+        <!-- 8. 시공 순서 및 체크리스트 -->
         <section id="sec8" class="mb-8 border-t-2 border-dashed border-gray-300 pt-8 mt-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-2 flex items-center">
                 <span class="text-green-600 mr-2">✅</span> 8. 시공 진행 체크리스트
@@ -492,6 +507,7 @@
             <p class="text-sm text-gray-500 mb-6">※ 일반적인 카페/로스터 시공 순서에 맞추어 재배열했습니다. 체크박스를 클릭하여 공정 완료 상태를 기록하세요.</p>
             
             <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                <!-- Step 1 -->
                 <div class="bg-gray-50 px-4 py-2 border-b border-gray-200 font-bold text-gray-700">1단계: 철거 및 기반 설비 (가장 먼저 진행되어야 할 뼈대 작업)</div>
                 <div class="p-4 space-y-3 border-b border-gray-200">
                     <div class="flex items-start check-item">
@@ -524,6 +540,7 @@
                     </div>
                 </div>
 
+                <!-- Step 2 -->
                 <div class="bg-gray-50 px-4 py-2 border-b border-gray-200 font-bold text-gray-700">2단계: 형태 및 기기 부착 (공간의 모양을 만드는 작업)</div>
                 <div class="p-4 space-y-3 border-b border-gray-200">
                     <div class="flex items-start check-item">
@@ -549,6 +566,7 @@
                     </div>
                 </div>
 
+                <!-- Step 3 -->
                 <div class="bg-gray-50 px-4 py-2 border-b border-gray-200 font-bold text-gray-700">3단계: 마감 및 세팅 (눈에 보이는 최종 단장)</div>
                 <div class="p-4 space-y-3">
                     <div class="flex items-start check-item">
@@ -586,6 +604,7 @@
             </div>
         </section>
 
+        <!-- 참고 사항 -->
         <section class="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-200">
             <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
                 <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -601,6 +620,7 @@
 
     </div>
 
+    <!-- 스크립트 로직 -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- 1. 모바일 햄버거 메뉴 토글 ---
@@ -620,7 +640,7 @@
             });
 
             // --- 2. 실제 지출 장부 로직 ---
-            const TOTAL_INCOME = 115900000 + 217000000; // 332,900,000원
+            const TOTAL_INCOME = 117450000 + 217000000; // 334,450,000원
             
             const defaultExpenses = [
                 { date: '2026-03-03', desc: '명도 비용', amount: 3000000 },
@@ -704,14 +724,18 @@
                 { date: '2026-05-04', desc: '4월 관리비', amount: 218060 },
                 { date: '2026-05-05', desc: '현수막', amount: 70000 },
                 { date: '2026-05-05', desc: '로스터기', amount: 5000000 },
-                { date: '2026-05-05', desc: '배너', amount: 72000 }
+                { date: '2026-05-05', desc: '배너', amount: 72000 },
+                { date: '2026-05-09', desc: '각종 비품', amount: 200000 },
+                { date: '2026-05-10', desc: '교인식대(15명)', amount: 180000 },
+                { date: '2026-05-10', desc: '손님 식대 40명', amount: 550000 },
+                { date: '2026-05-10', desc: '기념품 재료비(드립백 100개)', amount: 300000 }
             ];
             
-            // v70 키를 사용하여 수정된 항목을 강제 갱신 및 캐시 초기화
-            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v70'));
+            // v76 키를 사용하여 수정된 항목을 강제 갱신 및 캐시 초기화
+            let expenses = JSON.parse(localStorage.getItem('raon_expenses_v76'));
             if (!expenses) {
                 expenses = defaultExpenses;
-                localStorage.setItem('raon_expenses_v70', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v76', JSON.stringify(expenses));
             }
             // 항상 과거(오래된 날짜)가 위로 오도록 정렬 보장
             expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -761,7 +785,7 @@
                 expenses.push({ date, desc, amount });
                 // 항목 추가 시에도 과거순(오름차순) 정렬 유지
                 expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
-                localStorage.setItem('raon_expenses_v70', JSON.stringify(expenses));
+                localStorage.setItem('raon_expenses_v76', JSON.stringify(expenses));
                 
                 this.reset();
                 document.getElementById('exp-date').valueAsDate = new Date();
@@ -778,7 +802,7 @@
             window.deleteExpense = function(index) {
                 if(confirm('이 지출 내역을 삭제하시겠습니까?')) {
                     expenses.splice(index, 1);
-                    localStorage.setItem('raon_expenses_v70', JSON.stringify(expenses));
+                    localStorage.setItem('raon_expenses_v76', JSON.stringify(expenses));
                     updateDashboard();
                 }
             };
